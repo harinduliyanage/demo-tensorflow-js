@@ -27,6 +27,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/argon.scss",
               "src/styles.scss"
             ],
             "scripts": []
@@ -118,6 +119,7 @@
           }
         }
       }
-    }},
-  "defaultProject": "demo-tensorflowjs"
+    }
+  },
+  "defaultProject": "argon-design-system-angular"
 }
