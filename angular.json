@@ -27,7 +27,6 @@
               "src/assets"
             ],
             "styles": [
-              "src/assets/argon.scss",
               "src/styles.scss"
             ],
             "scripts": []
