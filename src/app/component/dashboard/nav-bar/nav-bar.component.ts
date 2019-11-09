@@ -6,8 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
+  selectedTab: number;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.selectedTab = 0;
+  }
 }
