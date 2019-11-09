@@ -8,6 +8,7 @@ import { LoginComponent } from './component/login/login.component';
 import { NavBarComponent } from './component/dashboard/nav-bar/nav-bar.component';
 import { SegmentationComponent } from './component/dashboard/content/segmentation/segmentation.component';
 import { ClassificationComponent } from './component/dashboard/content/classification/classification.component';
+import { ObjectDetectionComponent } from './component/dashboard/content/object-detection/object-detection.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ClassificationComponent } from './component/dashboard/content/classific
     LoginComponent,
     NavBarComponent,
     SegmentationComponent,
-    ClassificationComponent
+    ClassificationComponent,
+    ObjectDetectionComponent
   ],
   imports: [
     BrowserModule,
