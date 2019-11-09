@@ -3,18 +3,18 @@
     <div class="profile-tabs">
       <ul class="nav nav-pills nav-pills-icons justify-content-center" role="tablist">
         <li class="nav-item">
-          <a class="nav-link active" [routerLink]="['/dashboard/classification']" role="tab" data-toggle="tab">
+          <a class="nav-link" [routerLink]="['/dashboard/classification']" [ngClass]="{'active': selectedTab === 0}" (click)="selectedTab = 0" role="tab" data-toggle="tab">
             <i class="material-icons">camera</i> Classification
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/dashboard/segmentation']" role="tab" data-toggle="tab">
+          <a class="nav-link" [routerLink]="['/dashboard/segmentation']" [ngClass]="{'active': selectedTab === 1}" (click)="selectedTab = 1" role="tab" data-toggle="tab">
             <i class="material-icons">videocam</i> Segmentation
           </a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" [routerLink]="['/login']" role="tab" data-toggle="tab">
-            <i class="material-icons">favorite</i> Favorite
+          <a class="nav-link" [routerLink]="['/dashboard/object-detection']" [ngClass]="{'active': selectedTab == 2}" (click)="selectedTab = 2" role="tab" data-toggle="tab">
+            <i class="material-icons">videocam</i> Object Detection
           </a>
         </li>
       </ul>
