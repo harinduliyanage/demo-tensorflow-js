@@ -14,11 +14,15 @@ export class ObjectDetectionComponent implements OnInit {
   @ViewChild('canvas', {static: true})
   canvas: ElementRef<HTMLCanvasElement>;
 
+  modelLoading: boolean;
+  model: any;
+
   constructor() { }
 
   ngOnInit() {
+    this.modelLoading = true;
     this.webcam_start();
-    this.predictWithCocoModel();
+    this.loadCocoModel();
   }
 
   webcam_start() {
@@ -36,9 +40,26 @@ export class ObjectDetectionComponent implements OnInit {
       });
   }
 
-  public async predictWithCocoModel() {
-    const model = await cocoSSD.load('lite_mobilenet_v2');
-    this.detectFrame(this.video.nativeElement, model);
+  webcam_stop() {
+    const videoElements = this.video.nativeElement;
+    navigator.mediaDevices
+      .getUserMedia({
+        audio: false,
+        video: {facingMode: 'user', }
+      })
+      .then(stream => {
+        stream.stop();
+      });
+  }
+
+  public async loadCocoModel() {
+    this.model = await cocoSSD.load('lite_mobilenet_v2');
+    this.modelLoading = false;
+    this.predictWithCocoModel();
+  }
+
+  predictWithCocoModel() {
+    this.detectFrame(this.video.nativeElement, this.model);
   }
 
   detectFrame = (video, model) => {
@@ -49,18 +70,19 @@ export class ObjectDetectionComponent implements OnInit {
       });
     });
   }
+
   renderPredictions = predictions => {
     const canvas = this.canvas.nativeElement;
 
     const ctx = canvas.getContext('2d');
-    canvas.width = 300;
-    canvas.height = 300;
+    canvas.width = 490;
+    canvas.height = 360;
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height);
     // Fonts
     const font = '16px sans-serif';
     ctx.font = font;
     ctx.textBaseline = 'top';
-    ctx.drawImage(this.video.nativeElement, 0, 0, 300, 300);
+    ctx.drawImage(this.video.nativeElement, 0, 0, 490, 360);
     predictions.forEach(prediction => {
       const x = prediction.bbox[0];
       const y = prediction.bbox[1];
