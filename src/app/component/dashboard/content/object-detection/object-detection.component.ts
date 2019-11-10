@@ -1,5 +1,6 @@
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import * as cocoSSD from '@tensorflow-models/coco-ssd';
+import {ModelConfig} from '@tensorflow-models/coco-ssd';
 
 
 @Component({
@@ -53,7 +54,8 @@ export class ObjectDetectionComponent implements OnInit {
   }
 
   public async loadCocoModel() {
-    this.model = await cocoSSD.load('lite_mobilenet_v2');
+    const config: ModelConfig = {base: 'lite_mobilenet_v2', modelUrl: ''};
+    this.model = await cocoSSD.load(config);
     this.modelLoading = false;
     this.predictWithCocoModel();
   }
