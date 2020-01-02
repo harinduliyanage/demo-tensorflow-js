@@ -1,0 +1,7 @@
+version: '3.3'
+
+services:
+  demo-tensorflow-js:
+    build: /.
+    ports:
+      - "4200:4200"
