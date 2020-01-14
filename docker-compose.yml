@@ -5,3 +5,11 @@ services:
     build: /.
     ports:
       - "4200:4200"
+  proxy-server:
+    build: nginx/.
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - /data/certs:/tmp/ssl
+
