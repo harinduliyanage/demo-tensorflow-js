@@ -1,15 +1,16 @@
 version: '3.3'
 
 services:
-  demo-tensorflow-js:
-    build: /.
-    ports:
-      - "4200:4200"
+  front-end:
+    build: application-server/. # you dont need to expose front end application to outside
+    volumes:
+    - /front-end-app/dist/demo-tensorflowjs:/usr/share/nginx/html #put local path to left side
   proxy-server:
-    build: nginx/.
+    build: proxy-server/.
     ports:
       - "80:80"
       - "443:443"
     volumes:
-      - /data/certs:/tmp/ssl
+      - /app/certificate:/tmp/ssl #put local path to left side
+
 
